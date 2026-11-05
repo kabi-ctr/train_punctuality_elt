@@ -1,0 +1,292 @@
+[
+  {
+    "countryCode": "FI",
+    "latitude": 59.990199,
+    "longitude": 23.488607,
+    "passengerTraffic": true,
+    "stationName": "Dragsvik",
+    "stationShortCode": "DRA",
+    "stationUICCode": 167,
+    "type": "STATION"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 59.866408,
+    "longitude": 23.084138,
+    "passengerTraffic": false,
+    "stationName": "Dynamiittivaihde",
+    "stationShortCode": "DMV",
+    "stationUICCode": 581,
+    "type": "TURNOUT_IN_THE_OPEN_LINE"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 59.826865,
+    "longitude": 22.968291,
+    "passengerTraffic": true,
+    "stationName": "Hanko asema",
+    "stationShortCode": "HNK",
+    "stationUICCode": 73,
+    "type": "STATION"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 59.828617,
+    "longitude": 22.981473,
+    "passengerTraffic": false,
+    "stationName": "Hanko tavara",
+    "stationShortCode": "HNKT",
+    "stationUICCode": 1317,
+    "type": "STATION"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 59.830141,
+    "longitude": 22.988361,
+    "passengerTraffic": true,
+    "stationName": "Hanko-Pohjoinen",
+    "stationShortCode": "HKP",
+    "stationUICCode": 879,
+    "type": "STATION"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 60.63126,
+    "longitude": 24.857481,
+    "passengerTraffic": true,
+    "stationName": "Hyvinkää asema",
+    "stationShortCode": "HY",
+    "stationUICCode": 30,
+    "type": "STATION"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 60.650153,
+    "longitude": 24.840155,
+    "passengerTraffic": false,
+    "stationName": "Hyvinkää Paavola",
+    "stationShortCode": "PVL",
+    "stationUICCode": 1368,
+    "type": "STATION"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 62.951072,
+    "longitude": 22.394797,
+    "passengerTraffic": true,
+    "stationName": "Isokyrö",
+    "stationShortCode": "IKY",
+    "stationUICCode": 295,
+    "type": "STATION"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 60.552798,
+    "longitude": 24.970682,
+    "passengerTraffic": true,
+    "stationName": "Jokela",
+    "stationShortCode": "JK",
+    "stationUICCode": 28,
+    "type": "STATION"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 61.496551,
+    "longitude": 23.572333,
+    "passengerTraffic": false,
+    "stationName": "Kalkku",
+    "stationShortCode": "KAU",
+    "stationUICCode": 639,
+    "type": "STATION"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 60.068724,
+    "longitude": 23.66126,
+    "passengerTraffic": true,
+    "stationName": "Karjaa",
+    "stationShortCode": "KR",
+    "stationUICCode": 60,
+    "type": "STATION"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 62.990138,
+    "longitude": 22.003444,
+    "passengerTraffic": true,
+    "stationName": "Laihia",
+    "stationShortCode": "LAI",
+    "stationUICCode": 293,
+    "type": "STATION"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 59.904082,
+    "longitude": 23.236919,
+    "passengerTraffic": true,
+    "stationName": "Lappohja",
+    "stationShortCode": "LPO",
+    "stationUICCode": 75,
+    "type": "STATION"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 61.510284,
+    "longitude": 23.6817,
+    "passengerTraffic": false,
+    "stationName": "Lielahti",
+    "stationShortCode": "LLH",
+    "stationUICCode": 183,
+    "type": "STATION"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 63.936389,
+    "longitude": 24.960768,
+    "passengerTraffic": true,
+    "stationName": "Nivala",
+    "stationShortCode": "NVL",
+    "stationUICCode": 328,
+    "type": "STATION"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 61.481059,
+    "longitude": 23.49917,
+    "passengerTraffic": true,
+    "stationName": "Nokia",
+    "stationShortCode": "NOA",
+    "stationUICCode": 181,
+    "type": "STATION"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 60.601471,
+    "longitude": 24.906231,
+    "passengerTraffic": false,
+    "stationName": "Palopuro",
+    "stationShortCode": "PLP",
+    "stationUICCode": 562,
+    "type": "STATION"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 60.697135,
+    "longitude": 24.818591,
+    "passengerTraffic": false,
+    "stationName": "Riihimäki Arolampi",
+    "stationShortCode": "ARP",
+    "stationUICCode": 1235,
+    "type": "STATION"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 60.736078,
+    "longitude": 24.781241,
+    "passengerTraffic": true,
+    "stationName": "Riihimäki asema",
+    "stationShortCode": "RI",
+    "stationUICCode": 40,
+    "type": "STATION"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 59.875008,
+    "longitude": 23.121052,
+    "passengerTraffic": true,
+    "stationName": "Santala",
+    "stationShortCode": "STA",
+    "stationUICCode": 827,
+    "type": "STOPPING_POINT"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 62.792016,
+    "longitude": 22.844217,
+    "passengerTraffic": true,
+    "stationName": "Seinäjoki asema",
+    "stationShortCode": "SK",
+    "stationUICCode": 280,
+    "type": "STATION"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 59.926668,
+    "longitude": 23.312403,
+    "passengerTraffic": true,
+    "stationName": "Skogby",
+    "stationShortCode": "SGY",
+    "stationUICCode": 817,
+    "type": "STOPPING_POINT"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 59.979553,
+    "longitude": 23.443501,
+    "passengerTraffic": true,
+    "stationName": "Tammisaari",
+    "stationShortCode": "TMS",
+    "stationUICCode": 76,
+    "type": "STOPPING_POINT"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 61.498236,
+    "longitude": 23.773454,
+    "passengerTraffic": true,
+    "stationName": "Tampere asema",
+    "stationShortCode": "TPE",
+    "stationUICCode": 160,
+    "type": "STATION"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 63.000773,
+    "longitude": 22.171462,
+    "passengerTraffic": true,
+    "stationName": "Tervajoki",
+    "stationShortCode": "TK",
+    "stationUICCode": 294,
+    "type": "STOPPING_POINT"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 61.503363,
+    "longitude": 23.630271,
+    "passengerTraffic": true,
+    "stationName": "Tesoma",
+    "stationShortCode": "TSO",
+    "stationUICCode": 1359,
+    "type": "STOPPING_POINT"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 63.097786,
+    "longitude": 21.621824,
+    "passengerTraffic": true,
+    "stationName": "Vaasa",
+    "stationShortCode": "VS",
+    "stationUICCode": 288,
+    "type": "STATION"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 62.917801,
+    "longitude": 22.532729,
+    "passengerTraffic": true,
+    "stationName": "Ylistaro",
+    "stationShortCode": "YST",
+    "stationUICCode": 296,
+    "type": "STOPPING_POINT"
+  },
+  {
+    "countryCode": "FI",
+    "latitude": 64.071898,
+    "longitude": 24.540593,
+    "passengerTraffic": true,
+    "stationName": "Ylivieska",
+    "stationShortCode": "YV",
+    "stationUICCode": 320,
+    "type": "STATION"
+  }
+]

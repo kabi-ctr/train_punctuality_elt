@@ -1,0 +1,92 @@
+[
+  {
+    "categoryCode": "A",
+    "categoryName": "Aikataulu ja liikennöinti",
+    "id": 318834762,
+    "validFrom": "2017-01-01"
+  },
+  {
+    "categoryCode": "E",
+    "categoryName": "Etuajassakulku",
+    "id": 335611978,
+    "validFrom": "2017-01-01"
+  },
+  {
+    "categoryCode": "H",
+    "categoryName": "Henkilökunta",
+    "id": 251725898,
+    "validFrom": "2017-01-01"
+  },
+  {
+    "categoryCode": "I",
+    "categoryName": "Muut syyt",
+    "id": 469829706,
+    "validFrom": "2017-01-01"
+  },
+  {
+    "categoryCode": "J",
+    "categoryName": "Junan muodostamisen viivästyminen",
+    "id": 268503114,
+    "validFrom": "2019-09-01"
+  },
+  {
+    "categoryCode": "K",
+    "categoryName": "Kalusto, moottorijunat ja vaunut",
+    "id": 285280330,
+    "validFrom": "2017-01-01"
+  },
+  {
+    "categoryCode": "L",
+    "categoryName": "Liikenteenhoito",
+    "id": 352389194,
+    "validFrom": "2017-01-01"
+  },
+  {
+    "categoryCode": "M",
+    "categoryName": "Matkustajapalvelu",
+    "id": 453052490,
+    "validFrom": "2017-01-01"
+  },
+  {
+    "categoryCode": "O",
+    "categoryName": "Onnettomuus",
+    "id": 436275274,
+    "validFrom": "2017-01-01"
+  },
+  {
+    "categoryCode": "P",
+    "categoryName": "Liikenteenhoitojärjestelmät",
+    "id": 369166410,
+    "validFrom": "2017-01-01"
+  },
+  {
+    "categoryCode": "R",
+    "categoryName": "Ratatyö",
+    "id": 419498058,
+    "validFrom": "2017-01-01"
+  },
+  {
+    "categoryCode": "S",
+    "categoryName": "Sähkörata",
+    "id": 385943626,
+    "validFrom": "2017-01-01"
+  },
+  {
+    "categoryCode": "T",
+    "categoryName": "Rata (ratarakenne)",
+    "id": 402720842,
+    "validFrom": "2017-01-01"
+  },
+  {
+    "categoryCode": "V",
+    "categoryName": "Vetokalusto",
+    "id": 302057546,
+    "validFrom": "2017-01-01"
+  },
+  {
+    "categoryCode": "X",
+    "categoryName": "Rataliikennekeskukselle ilmoitettavat syyt",
+    "id": 486606922,
+    "validFrom": "2017-07-01"
+  }
+]

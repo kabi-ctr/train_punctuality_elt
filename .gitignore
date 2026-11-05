@@ -1,0 +1,18 @@
+# pipeline data (landing zone, warehouse, exports)
+data/
+
+# dbt
+transform/target/
+transform/logs/
+transform/dbt_packages/
+transform/.user.yml
+logs/
+
+# python
+__pycache__/
+*.egg-info/
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+report.md
