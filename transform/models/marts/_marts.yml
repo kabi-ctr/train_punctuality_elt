@@ -1,0 +1,74 @@
+version: 2
+
+models:
+  - name: dim_stations
+    description: Railway stations and stopping points (latest Digitraffic snapshot).
+    columns:
+      - name: station_code
+        data_tests: [unique, not_null]
+
+  - name: fct_train_runs
+    description: >
+      One row per train run on a departure date, all categories. Use is_passenger_train
+      and is_punctuality_measured to filter.
+    columns:
+      - name: train_run_id
+        data_tests: [unique, not_null]
+      - name: departure_date
+        data_tests: [not_null]
+      - name: destination_station_code
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_stations')
+                field: station_code
+              config:
+                severity: warn
+
+  - name: fct_train_stops
+    description: One row per commercial (passenger-facing) arrival or departure.
+    columns:
+      - name: timetable_row_id
+        data_tests: [unique, not_null]
+      - name: station_code
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_stations')
+                field: station_code
+              config:
+                severity: warn
+
+  - name: mart_daily_punctuality
+    description: >
+      Daily punctuality of passenger trains by category and service group (commuter
+      line letter, or long-distance train type such as IC or S). service_group 'All'
+      holds the category total.
+    columns:
+      - name: punctuality_pct
+        description: trains_on_time / trains_measured, in percent.
+      - name: service_group
+        data_tests: [not_null]
+
+  - name: mart_station_daily
+    description: Daily departure delays of passenger trains per station.
+    columns:
+      - name: station_code
+        data_tests: [not_null]
+
+  - name: mart_delay_causes
+    description: >
+      Reported delay causes on passenger trains per day and top-level category. English
+      labels come from the cause_category_labels seed (project translations of the
+      official Finnish names).
+    columns:
+      - name: category_code
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_digitraffic__cause_categories')
+                field: category_code
+              config:
+                severity: warn

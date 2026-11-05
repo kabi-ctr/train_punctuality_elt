@@ -1,0 +1,42 @@
+name: train_punctuality
+version: "0.1.0"
+config-version: 2
+profile: train_punctuality
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+flags:
+  send_anonymous_usage_stats: false
+
+vars:
+  # Categories counted as passenger traffic in the marts.
+  passenger_train_categories: ["Commuter", "Long-distance"]
+  # A train is on time when its final arrival is at most this many minutes late.
+  # Long-distance: 5 min, as in Traficom's punctuality statistics.
+  # Commuter: 3 min, a stricter project default; change it here or with --vars.
+  on_time_threshold_minutes:
+    Long-distance: 5
+    Commuter: 3
+  # A station departure counts as late when it is more than this many minutes late.
+  late_departure_threshold_minutes: 5
+
+models:
+  train_punctuality:
+    staging:
+      +schema: staging
+      +materialized: view
+    intermediate:
+      +schema: intermediate
+      +materialized: table
+    marts:
+      +schema: marts
+      +materialized: table
+
+seeds:
+  train_punctuality:
+    +schema: reference

@@ -1,0 +1,11 @@
+train_punctuality:
+  target: local
+  outputs:
+    local:
+      type: duckdb
+      # Set by `train-elt transform`; the default works when dbt is run from transform/.
+      path: "{{ env_var('TRAIN_ELT_DUCKDB_PATH', '../data/warehouse/trains.duckdb') }}"
+      schema: main
+      threads: 4
+      settings:
+        TimeZone: UTC

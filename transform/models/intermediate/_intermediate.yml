@@ -1,0 +1,63 @@
+version: 2
+
+models:
+  - name: int_train_stops
+    description: Timetable rows with train attributes, Helsinki local times and delays.
+    columns:
+      - name: timetable_row_id
+        data_tests: [unique, not_null]
+      - name: delay_minutes
+        description: Delay at this row in whole minutes; null when no actual time was recorded.
+
+  - name: int_train_runs
+    description: One row per train run with final-arrival delay and on-time flag.
+    columns:
+      - name: train_run_id
+        data_tests: [unique, not_null]
+      - name: is_on_time
+        description: >
+          True when the final arrival was at most on_time_threshold_minutes late. Null when
+          the run is not measurable (cancelled, no threshold for its category, or no
+          recorded final arrival).
+
+unit_tests:
+  - name: on_time_uses_category_threshold_and_skips_unmeasurable_runs
+    description: >
+      Long-distance trains may be 5 min late, commuter trains 3 min. Cancelled trains and
+      trains with no recorded final arrival are not measured.
+    model: int_train_runs
+    given:
+      - input: ref('stg_digitraffic__trains')
+        rows:
+          - {train_run_id: ld_5_late, train_category: Long-distance, train_type: IC, is_cancelled: false}
+          - {train_run_id: ld_6_late, train_category: Long-distance, train_type: IC, is_cancelled: false}
+          - {train_run_id: cm_3_late, train_category: Commuter, commuter_line_id: A, is_cancelled: false}
+          - {train_run_id: cm_4_late, train_category: Commuter, commuter_line_id: A, is_cancelled: false}
+          - {train_run_id: cancelled, train_category: Commuter, commuter_line_id: A, is_cancelled: true}
+          - {train_run_id: no_actual, train_category: Long-distance, train_type: IC, is_cancelled: false}
+          - {train_run_id: cargo, train_category: Cargo, train_type: T, is_cancelled: false}
+      - input: ref('int_train_stops')
+        rows:
+          - {train_run_id: ld_5_late, row_index: 1, stop_type: DEPARTURE, delay_minutes: 0, is_cancelled: false}
+          - {train_run_id: ld_5_late, row_index: 2, stop_type: ARRIVAL, delay_minutes: 5, is_cancelled: false}
+          - {train_run_id: ld_6_late, row_index: 1, stop_type: DEPARTURE, delay_minutes: 0, is_cancelled: false}
+          - {train_run_id: ld_6_late, row_index: 2, stop_type: ARRIVAL, delay_minutes: 6, is_cancelled: false}
+          - {train_run_id: cm_3_late, row_index: 1, stop_type: DEPARTURE, delay_minutes: 1, is_cancelled: false}
+          - {train_run_id: cm_3_late, row_index: 2, stop_type: ARRIVAL, delay_minutes: 3, is_cancelled: false}
+          - {train_run_id: cm_4_late, row_index: 1, stop_type: DEPARTURE, delay_minutes: 1, is_cancelled: false}
+          - {train_run_id: cm_4_late, row_index: 2, stop_type: ARRIVAL, delay_minutes: 4, is_cancelled: false}
+          - {train_run_id: cancelled, row_index: 1, stop_type: DEPARTURE, is_cancelled: true}
+          - {train_run_id: cancelled, row_index: 2, stop_type: ARRIVAL, is_cancelled: true}
+          - {train_run_id: no_actual, row_index: 1, stop_type: DEPARTURE, delay_minutes: 2, is_cancelled: false}
+          - {train_run_id: no_actual, row_index: 2, stop_type: ARRIVAL, is_cancelled: false}
+          - {train_run_id: cargo, row_index: 1, stop_type: DEPARTURE, delay_minutes: 0, is_cancelled: false}
+          - {train_run_id: cargo, row_index: 2, stop_type: ARRIVAL, delay_minutes: 30, is_cancelled: false}
+    expect:
+      rows:
+        - {train_run_id: ld_5_late, is_punctuality_measured: true, is_on_time: true}
+        - {train_run_id: ld_6_late, is_punctuality_measured: true, is_on_time: false}
+        - {train_run_id: cm_3_late, is_punctuality_measured: true, is_on_time: true}
+        - {train_run_id: cm_4_late, is_punctuality_measured: true, is_on_time: false}
+        - {train_run_id: cancelled, is_punctuality_measured: false, is_on_time: null}
+        - {train_run_id: no_actual, is_punctuality_measured: false, is_on_time: null}
+        - {train_run_id: cargo, is_punctuality_measured: false, is_on_time: null}

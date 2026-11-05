@@ -1,0 +1,28 @@
+version: 2
+
+sources:
+  - name: digitraffic
+    description: >
+      Responses from the Fintraffic Digitraffic rail API (rata.digitraffic.fi), loaded
+      unchanged by `train-elt load`: one JSON object per row plus load metadata.
+      Data licence: CC BY 4.0.
+    schema: raw
+    tables:
+      - name: trains
+        description: One row per train run, from /api/v1/trains/{departure_date}.
+        columns:
+          - name: departure_date
+            description: Finnish service date the train run belongs to (partition key).
+            data_tests: [not_null]
+          - name: train_number
+            data_tests: [not_null]
+          - name: payload
+            description: The train object exactly as returned by the API.
+            data_tests: [not_null]
+          - name: _loaded_at
+            description: UTC time the partition was (re)loaded; drives incremental models.
+            data_tests: [not_null]
+      - name: stations
+        description: Latest snapshot of /api/v1/metadata/stations, one station per row.
+      - name: cause_categories
+        description: Latest snapshot of /api/v1/metadata/cause-category-codes.
