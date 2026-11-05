@@ -1,0 +1,81 @@
+name: Daily punctuality run
+
+# Runs the full pipeline against the live Digitraffic API every morning and
+# publishes the report as the job summary, plus the marts as Parquet artifacts.
+# The landing zone is cached between runs, so each run only downloads days it
+# has not seen; the DuckDB warehouse is rebuilt from the landing zone each time.
+
+on:
+  schedule:
+    - cron: "23 5 * * *"  # 07:23 Helsinki time in winter, 08:23 in summer
+  workflow_dispatch:
+    inputs:
+      days:
+        description: Number of most recent complete days to extract
+        default: "7"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: daily-run
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      TRAIN_ELT_DATA_DIR: data
+      DAYS: ${{ inputs.days || '7' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install
+        run: pip install -e .
+
+      - name: Restore landing zone
+        uses: actions/cache/restore@v4
+        with:
+          path: data/landing
+          key: landing-${{ github.run_id }}
+          restore-keys: landing-
+
+      - name: Extract (Digitraffic API -> landing zone)
+        run: train-elt -v extract --days "$DAYS"
+
+      - name: Prune landing partitions older than 35 days
+        run: train-elt prune --keep-days 35
+
+      - name: Save landing zone
+        uses: actions/cache/save@v4
+        with:
+          path: data/landing
+          key: landing-${{ github.run_id }}
+
+      - name: Load (landing zone -> DuckDB raw)
+        run: train-elt -v load
+
+      - name: Transform (dbt build with tests)
+        run: train-elt transform
+
+      - name: Report
+        run: |
+          train-elt report --days "$DAYS" --output report.md
+          cat report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Export marts to Parquet
+        run: train-elt export
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: punctuality-${{ github.run_id }}
+          path: |
+            report.md
+            data/exports/
+          retention-days: 14
