@@ -27,7 +27,8 @@ def _table(headers: list[str], rows: list[tuple]) -> str:
         if value is None:
             return "–"
         if isinstance(value, float):
-            return f"{value:,.1f}"
+            value = round(value, 1)
+            return f"{(0.0 if value == 0 else value):,.1f}"  # never print "-0.0"
         if isinstance(value, int):
             return f"{value:,}"
         return str(value)
