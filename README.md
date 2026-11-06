@@ -18,6 +18,30 @@ It answers questions such as:
 - Which stations have the most late departures?
 - Which delay causes are reported most often?
 
+## Latest results
+
+From the first live run, covering 30 October to 5 November 2026. The full report is in
+the [workflow run summary](https://github.com/kabi-ctr/train_punctuality_elt/actions/workflows/daily.yml).
+
+| Date | Commuter on time | Long-distance on time |
+|---|---|---|
+| Fri 30 Oct | 96.8% of 1,027 | 88.5% of 227 |
+| Sat 31 Oct | 93.9% of 869 | 85.9% of 184 |
+| Sun 1 Nov | 98.0% of 787 | 87.3% of 189 |
+| Mon 2 Nov | 97.1% of 1,031 | 86.7% of 211 |
+| Tue 3 Nov | 96.3% of 1,022 | 88.3% of 214 |
+| Wed 4 Nov | 96.8% of 1,028 | 84.9% of 219 |
+| Thu 5 Nov | 96.7% of 1,023 | 89.4% of 208 |
+
+Counts are measured trains: those that ran and had their final arrival recorded.
+
+- Commuter line R was the least punctual high-volume service: 73.9% of 594 trains.
+- IC trains were 84.2% punctual over 852 runs.
+- The stations with the most late departures were on the northern routes: Tornio,
+  Parkano, Oulainen and Kemi, where 35–39% of departures were more than 5 minutes late.
+- Traffic control (821 reports) and track structure (522) were the most reported delay
+  causes.
+
 ## Architecture
 
 ```mermaid
@@ -165,8 +189,11 @@ workflows in repositories with no activity for 60 days.
 
 ## Performance
 
-A local check on 30 days of cloned trains (54,600 runs, 514,800 timetable rows), on a
-2-vCPU Linux VM: load took 2.6 s and a full `dbt build` with all tests took 8 s.
+- **Live run in GitHub Actions** (7 real days, first run with an empty cache):
+  extract 17 s, load 2 s, `dbt build` with all 60 models and tests 12 s, all passing
+  with no warnings. The whole job takes about a minute.
+- **Local volume check** on 30 days of cloned trains (54,600 runs, 514,800 timetable
+  rows), on a 2-vCPU Linux VM: load took 2.6 s and a full `dbt build` took 8 s.
 
 ## Limitations and next steps
 
